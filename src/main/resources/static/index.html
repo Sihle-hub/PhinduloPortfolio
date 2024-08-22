@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vhumbani Phindulo Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        /* CSS Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            height: 100vh;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        /* Layout Styles */
+        main {
+            display: flex;
+            height: 100%;
+            width: 100%;
+        }
+
+        aside {
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            background-color: #1f1f1f;
+            padding: 20px;
+        }
+
+        .Links {
+            flex-direction: column;
+            display: flex;
+            gap: 15px;
+            list-style-type: none;
+        }
+
+        .Links li {
+            padding: 15px 25px;
+            color: #b5b5b5;
+            cursor: pointer;
+            position: relative;
+            transition-duration: 0.3s;
+            border-radius: 10px;
+            font-weight: 500;
+        }
+
+        .Links li:hover,
+        .Links li.activeLink {
+            color: #b5f69f;
+            background-color: #333;
+            font-weight: 600;
+        }
+
+        /* Swiper Styles */
+        .swiper {
+            width: calc(100% - 220px);
+            height: 100%;
+        }
+
+        .swiper-slide {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #282828;
+            padding: 40px;
+            border-radius: 10px;
+        }
+
+        .swiper-slide h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #b5f69f;
+        }
+
+        .swiper-slide p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            line-height: 1.6;
+            color: #e0e0e0;
+        }
+        .contactMe {
+    padding: 40px;
+    text-align: center;
+    color: #e0e0e0;
+}
+
+.contactMe h1 {
+    margin-bottom: 20px;
+    font-size: 2rem;
+    color: #b5f69f;
+}
+
+.contactMe form {
+    margin-bottom: 30px;
+}
+
+.contactMe form textarea {
+    width: 100%;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    border: 1px solid #b5f69f;
+    color: #ffffff;
+    background-color: #1f1f1f;
+    height: 120px;
+}
+
+.contactMe form textarea::placeholder {
+    color: #777;
+}
+
+.contactMe form textarea:focus {
+    outline: none;
+    border-color: #88ed99;
+}
+
+.contactMe button {
+    padding: 10px 30px;
+    background-color: #b5f69f;
+    color: #212529;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.contactMe button:hover {
+    background-color: #88ed99;
+}
+
+.contact-info {
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.contact-info p {
+    margin: 10px 0;
+}
+
+.contact-info i {
+    margin-right: 10px;
+    color: #b5f69f;
+}
+
+.contact-info a {
+    color: #b5f69f;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: #88ed99;
+}
+
+.swiper-slide.contactMe {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height */
+    background: #f9f9f9; /* Light background color */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.contact-container {
+    text-align: center;
+    perspective: 1000px; /* Create 3D perspective */
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.contact-item {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contact-item:hover {
+    transform: rotateY(15deg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.contact-item i {
+    font-size: 2rem; /* Icon size */
+    color: #0073b1; /* LinkedIn color */
+}
+
+.contact-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: #333;
+}
+
+.contact-item a {
+    color: #0073b1;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contact-item {
+        width: 90%; /* Adjust width for smaller screens */
+    }
+
+    .contact-item i {
+        font-size: 1.5rem; /* Adjust icon size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .contact-item {
+        width: 100%; /* Full width on very small screens */
+    }
+
+    .contact-item i {
+        font-size: 1.2rem; /* Further adjust icon size for very small screens */
+    }
+}
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .contactMe {
+        padding: 20px;
+    }
+
+    .contactMe form textarea {
+        width: calc(100% - 40px);
+    }
+    
+    .contact-info {
+        font-size: 1rem;
+    }
+}
+
+
+        /* About Me Section Styles */
+        .about-me-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #e0e0e0;
+            max-width: 800px;
+        }
+
+        .about-me-content p {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .about-me-content ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .about-me-content ul li {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        /* Add this CSS for the services section styling */
+.services-list {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.service-item {
+    text-align: center;
+    max-width: 200px;
+}
+
+.service-item i {
+    font-size: 3rem;
+    color: #b5f69f;
+    margin-bottom: 15px;
+}
+
+.service-item h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #b5f69f;
+}
+
+.service-item p {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+                        /* Gallery Section */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.skill-item {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 200px;
+    transition: transform 0.3s ease;
+}
+
+.skill-item i {
+    font-size: 3rem;
+    color: #b5f69f;
+    margin-bottom: 10px;
+}
+
+.skill-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #b5f69f;
+}
+
+.skill-item p {
+    font-size: 1rem;
+    color: #e0e0e0;
+}
+
+.skill-item:hover {
+    transform: translateY(-10px);
+}
+
+.contributions, .internship-call {
+    margin-top: 40px;
+    text-align: left;
+    max-width: 700px;
+}
+
+.contributions h2 {
+    font-size: 1.8rem;
+    color: #b5f69f;
+    margin-bottom: 20px;
+}
+
+.contributions p, .internship-call p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+}
+
+.contributions ul {
+    margin-top: 10px;
+    padding-left: 20px;
+    list-style-type: disc;
+}
+
+.internship-call {
+    font-size: 1.2rem;
+    color: #88ed99;
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.internship-call:hover {
+    background-color: #333;
+}
+
+    </style>
+    
+</head>
+<body>
+
+    <main>
+        <aside>
+            <ul class="Links">
+                <li onclick="Navigate(0)" class="activeLink">Home</li>
+                <li onclick="Navigate(1)">About Me</li>
+                <li onclick="Navigate(2)">Skills</li>
+                <li onclick="Navigate(3)">Projects and Experience</li>
+                <li onclick="Navigate(4)">Contact Me</li>
+            </ul>
+        </aside>
+
+        <div class="swiper">
+            <div class="swiper-wrapper">
+                <!-- Home Section -->
+                <div class="swiper-slide" id="homeSection">
+                    <div class="home-content">
+                        <p>Bonjour Hello, My Name is </p>
+                        <h1><i>Phindulo Vhumbani</i></h1>
+                    </div>
+                    <div class="biography">
+                        <img src="my personal blog/portfoloi_pic.jpg" alt="Vhumbani Phindulo" class="bio-photo">
+                        <div class="bio-text">
+                            <p><strong>Biography:</strong> I am a senior computer science student at Tshwane University of Technology. I have experience in software development, particularly in web and mobile applications. I am in my final year, working on projects and web applications using Java, HTML, and other self-studied languages. I am passionate about coding and have a strong interest in developing web apps and learning more in the coding industry.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <style>
+                    /* Home Section Styling */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.1); /* Slight transparent background */
+    backdrop-filter: blur(10px); /* Blurred glass effect */
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Subtle shadow for depth */
+}
+
+.home-content h1 {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #ffffff; /* Bright white text */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Reflective shadow effect */
+}
+
+.home-content p {
+    font-size: 1.5rem;
+    max-width: 700px;
+    line-height: 1.8;
+    color: #e0e0e0; /* Softer white text for contrast */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7); /* Reflective shadow effect */
+}
+/* Styles for the home section */
+#homeSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Biography section styles */
+.biography {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.bio-photo {
+    width: 150px; /* Adjust as needed */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 2px solid #ddd; /* Optional: Add a border */
+}
+
+.bio-text {
+    max-width: 800px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .bio-photo {
+        width: 120px; /* Adjust for smaller screens */
+        height: 120px;
+    }
+}
+
+@media (max-width: 480px) {
+    .bio-photo {
+        width: 100px; /* Further adjust for very small screens */
+        height: 100px;
+    }
+}
+
+                </style>
+
+                <section class="swiper-slide">
+                    <div class="about-me-content">
+                        <h1><i>About Me</i></h1>
+                        <div class="about-me-grid">
+                            <div class="about-item">
+                                <h2>Background</h2>
+                                <p>
+                                    Final-year Diploma in Computer Science student at Tshwane University of Technology (TUT), with a strong foundation in technology and leadership roles since 2021.
+                                </p>
+                            </div>
+                            <div class="about-item">
+                                <h2>Experience</h2>
+                                <p>
+                                    <strong>2022-2023:</strong> SGLD Programs volunteer and peer facilitator, recognized for leadership and teamwork. <br>
+                                    <strong>2023:</strong> Lab Tutor and Academic Tutor, helping students excel in their studies.
+                                </p>
+                            </div>
+                            <div class="about-item">
+                                <h2>Skills & Strengths</h2>
+                                <ul class="skills-list">
+                                    <li>🎯 Goal-Oriented</li>
+                                    <li>🕒 Organized & Punctual</li>
+                                    <li>🤝 Team Player</li>
+                                    <li>🚀 Fast Learner</li>
+                                    <li>👂 Good Listener</li>
+                                </ul>
+                            </div>
+                            <div class="about-item">
+                                <h2>Interests</h2>
+                                <p>
+                                    Passionate about music, research, and continuous learning. I enjoy exploring new technologies and ideas through listening and hands-on practice.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <style>
+                    .about-me-grid {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr;
+                        gap: 20px;
+                        width: 100%;
+                        max-width: 900px;
+                    }
+                
+                    .about-item {
+                        background-color: #1f1f1f;
+                        padding: 20px;
+                        border-radius: 10px;
+                        transition: transform 0.3s ease, background-color 0.3s ease;
+                    }
+                
+                    .about-item:hover {
+                        transform: translateY(-10px);
+                        background-color: #333;
+                    }
+                
+                    .about-item h2 {
+                        font-size: 1.5rem;
+                        color: #b5f69f;
+                        margin-bottom: 10px;
+                    }
+                
+                    .about-item p {
+                        font-size: 1.1rem;
+                        line-height: 1.6;
+                        color: #e0e0e0;
+                    }
+                
+                    .skills-list {
+                        list-style-type: none;
+                        padding-left: 0;
+                    }
+                
+                    .skills-list li {
+                        font-size: 1.1rem;
+                        margin-bottom: 10px;
+                        transition: color 0.3s ease;
+                    }
+                
+                    .skills-list li:hover {
+                        color: #88ed99;
+                    }
+                </style>
+                
+
+                <div class="swiper-slide" id="servicesSection">
+                    <h1><i>Skills</i></h1>
+                    <div class="services-list">
+                        <div class="service-item">
+                            <i class="fas fa-code"></i>
+                            <h2>Web Development</h2>
+                            <p>Creating responsive, user-friendly websites tailored to your needs.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h2>Mobile Development</h2>
+                            <p>Developing mobile applications for both Android platforms.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-laptop-code"></i>
+                            <h2>Software Development</h2>
+                            <p>Building custom software solutions to solve complex problems.</p>
+                        </div>
+                        <div class="service-item">
+                            <i class="fas fa-database"></i>
+                            <h2>Database Management</h2>
+                            <p>Designing and managing efficient, secure databases for your applications.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                
+                <style>
+                    .services-content {
+                        text-align: center;
+                        padding: 40px;
+                        color: white;
+                    }
+                
+                    .services-grid {
+                        display: flex;
+                        flex-wrap: wrap;
+                        justify-content: center;
+                        gap: 30px;
+                    }
+                
+                    .service-card {
+                        background-color: #1f1f1f;
+                        width: 280px;
+                        padding: 20px;
+                        border-radius: 15px;
+                        transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+                        position: relative;
+                        overflow: hidden;
+                    }
+                
+                    .service-card:hover {
+                        transform: translateY(-15px);
+                        background-color: #333;
+                        box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.5);
+                    }
+                
+                    .service-icon img {
+                        width: 60px;
+                        height: 60px;
+                        margin-bottom: 20px;
+                    }
+                
+                    .service-card h2 {
+                        font-size: 1.5rem;
+                        color: #b5f69f;
+                        margin-bottom: 15px;
+                    }
+                
+                    .service-card p {
+                        font-size: 1.1rem;
+                        color: #e0e0e0;
+                        line-height: 1.6;
+                        margin-bottom: 20px;
+                    }
+                
+                    .hire-me-btn {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #b5f69f;
+                        color: #212529;
+                        border-radius: 10px;
+                        font-weight: bold;
+                        text-decoration: none;
+                        transition: background-color 0.3s ease, color 0.3s ease;
+                    }
+                
+                    .hire-me-btn:hover {
+                        background-color: #88ed99;
+                        color: #111;
+                    }
+                
+                    /* Responsive Design */
+                    @media (max-width: 768px) {
+                        .service-card {
+                            width: 100%;
+                            margin-bottom: 20px;
+                        }
+                    }
+                </style>
+                
+
+            <!-- Gallery Section -->
+<div class="swiper-slide" id="gallerySection">
+    <h1>My Technical Skills & Contributions</h1>
+
+    <!-- Skills Grid -->
+    <div class="skills-grid">
+        <!-- Java -->
+        <div class="skill-item">
+            <i class="fab fa-java"></i>
+            <h3>Java</h3>
+            <p>Proficient in Java programming, with experience in developing web applications and backend services.</p>
+        </div>
+
+        <!-- HTML -->
+        <div class="skill-item">
+            <i class="fab fa-html5"></i>
+            <h3>HTML</h3>
+            <p>Skilled in crafting responsive web pages using HTML and ensuring cross-browser compatibility.</p>
+        </div>
+
+        <!-- CSS -->
+        <div class="skill-item">
+            <i class="fab fa-css3-alt"></i>
+            <h3>CSS</h3>
+            <p>Expert in designing stylish and responsive user interfaces using CSS and modern design frameworks.</p>
+        </div>
+
+        <!-- Kotlin -->
+        <div class="skill-item">
+            <i class="fab fa-android"></i>
+            <h3>Kotlin</h3>
+            <p>Experienced in Android development using Kotlin, with a focus on creating intuitive mobile apps.</p>
+        </div>
+
+        <!-- SQL -->
+        <div class="skill-item">
+            <i class="fas fa-database"></i>
+            <h3>SQL</h3>
+            <p>Proficient in SQL for database management, including designing and querying complex databases.</p>
+        </div>
+
+        <!-- PLSQL -->
+        <div class="skill-item">
+            <i class="fas fa-code"></i>
+            <h3>PLSQL</h3>
+            <p>Experience in writing PLSQL scripts for database management and optimization.</p>
+        </div>
+    </div>
+
+    <!-- Project Contributions -->
+    <div class="contributions">
+        <h2>Project Contributions</h2>
+        <p><strong>Role played:</strong> Group Leader, Tester, Project Manual Script Writer, ERD Designer</p>
+        <p><strong>Key Contributions:</strong></p>
+        <ul>
+            <li>Designed ERD and other software diagrams</li>
+            <li>Collaborated with team members to integrate frontend with backend services</li>
+            <li>Compiled manual and data scripts with team members</li>
+        </ul>
+    </div>
+
+    <!-- Project Videos -->
+    <div class="project-videos">
+        <h2>Project Demos</h2></br>
+
+    <!-- Video 1 -->
+<div class="video-item">
+    <h3>Arifarane Project</h3>
+	<video width="560" height="315" controls autoplay loop muted poster="image.jpg">
+		<source src="arifarane_vid.mp4" type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+    <p style="text-align: left;">	The Arifarane Initiative is a non-profit organization dedicated to enhancing agricultural education and practices within the TUT community. Their mission is to promote sustainable farming methods, provide hands-on training, and foster a culture of innovation in agriculture. Through workshops, community outreach, and collaboration with local farmers, they aim to equip students and community members with the knowledge and skills needed to thrive in the agricultural sector. This was for them to show how they're transforming lives and promoting food security while building a greener future for all. Together, thriving agricultural community at TUT!</p>
+</div>
+
+<!-- Video 2 -->
+<div class="video-item">
+    <h3>Clothing Design System Project</h3>
+	<video width="560" height="315" controls autoplay loop muted poster="image.jpg">
+		<source src="L group.mp4" type="video/mp4">
+		Your browser does not support the video tag.
+	</video>
+    <p style="text-align: left;">This project aims to revolutionize the clothing design process by providing a comprehensive and integrated platform that empowers designers to bring their creative visions to life efficiently and sustainably. By leveraging technology, the Clothing Design System seeks to enhance creativity, collaboration, and productivity in the fashion industry.</p>
+</div>
+        <!-- Add more videos as needed -->
+    </div>
+
+    <!-- Internship Call-to-Action -->
+    <div class="internship-call">
+        <p>I am currently seeking an internship where I can apply my skills and contribute to impactful projects. If you're looking for a dedicated and skilled intern, I'd love to <a href="mailto:peendue07@gmail.com"><strong>CONNECT!</strong></a></p>
+    </div>
+</div>
+
+                    <style>
+
+.swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Ensures slide takes up at least the viewport height */
+    padding: 20px;
+    box-sizing: border-box;
+
+    width: 100%; /* or specific width */
+    height: auto; /* Ensure height accommodates the content */
+
+}
+.swiper-slide {
+    overflow: auto; /* Allows for scrolling if content overflows */
+    
+}
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.skill-item {
+    flex: 1 1 calc(25% - 20px); /* Adjust width and ensure items are flexible */
+    box-sizing: border-box;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .skill-item {
+        flex: 1 1 calc(50% - 20px); /* Adjust for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-item {
+        flex: 1 1 100%; /* Full width on very small screens */
+    }
+}
+.contributions, .internship-call {
+    margin-top: 20px; /* Space above sections */
+    text-align: center;
+    max-width: 800px; /* Limit width for readability */
+}
+
+.contributions ul {
+    list-style-type: disc;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.contributions ul li {
+    margin-bottom: 10px; /* Space between list items */
+}
+.swiper-button-next, .swiper-button-prev, .swiper-pagination {
+    z-index: 10; /* Ensure controls are above content */
+}
+
+#gallerySection {
+    display: block; /* Ensure the section is visible */
+    visibility: visible;
+}
+#gallerySection {
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding: 20px;
+    box-sizing: border-box;
+    scroll-behavior: smooth; /* Smooth scrolling */
+}
+
+/* Optional: Prevent horizontal overflow */
+body {
+    overflow-x: hidden;
+}
+
+
+
+
+                    </style>
+
+                 <!-- Updated Contact Me Section -->
+<div class="swiper-slide contactMe"  style="background-color: #1f1f1f;">
+    <div class="contact-container" style="background-color: #1f1f1f;">
+        <h1><i>Contact Me</i></h1>
+        <div class="contact-info">
+            <div class="contact-item">
+                <i class="fa fa-envelope"></i>
+                <p>Email: <a href="mailto:peendue07@gmail.com">peendue07@gmail.com</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fa fa-phone"></i>
+                <p>Phone: <a href="tel:0723387170">072 338 7170</a></p>
+            </div>
+            <div class="contact-item">
+                <i class="fa fa-linkedin"></i>
+                <p>LinkedIn: <a href="https://www.linkedin.com/in/phindulo-vhumbani-988835230/" target="_blank">View Profile</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p style="padding-left: 45%;">&copy; 2024 Vhumbani Phindulo. All rights reserved.</p>
+    </footer>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+	
+    <script>
+		// Ensure the gallery section is scrollable with arrow keys and mouse
+		document.addEventListener('keydown', function(event) {
+		    var gallerySection = document.getElementById('gallerySection');
+		    if (gallerySection && (event.key === "ArrowDown" || event.key === "ArrowUp")) {
+		        gallerySection.focus();
+		    }
+		});
+		
+		// Scroll smoothly with mouse wheel
+		document.getElementById('gallerySection').addEventListener('wheel', function(event) {
+		    event.preventDefault();
+		    this.scrollBy({
+		        top: event.deltaY,
+		        behavior: 'smooth'
+		    });
+		});
+
+        // Initialize Swiper with 3D Cube Effect
+        var swiper = new Swiper(".swiper", {
+            effect: "cube",
+            allowTouchMove: false,
+            grabCursor: false,
+            cubeEffect: {
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+            },
+            mousewheel: true,
+        });
+
+        // Navigation Function
+        function Navigate(indx) {
+            const links = document.querySelectorAll(".Links li");
+            links.forEach(link => link.classList.remove("activeLink"));
+            links[indx].classList.add("activeLink");
+            swiper.slideTo(indx, 1000, true);
+        }
+
+         // Form Submission (Optional)
+         document.querySelector('.contactMe form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            alert('Thank you for your message!'); // Show a thank you message
+            this.reset(); // Reset the form fields
+        });
+    </script>
+</body>
+</html>
